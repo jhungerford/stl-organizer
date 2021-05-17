@@ -1,0 +1,4 @@
+# Yarn binaries
+/.yarn/releases/** binary
+/.yarn/plugins/** binary
+
