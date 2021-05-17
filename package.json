@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "@tauri-apps/api": "^1.0.0-beta.1",
+    "@tauri-apps/cli": "^1.0.0-beta.2"
+  },
+  "name": "stl-organizer",
+  "version": "1.0.0",
+  "description": "Organizes 3D printing downloads",
+  "main": "index.js",
+  "author": "John Hungerford <jhungerford@gmail.com>",
+  "license": "Apache 2.0"
+}
