@@ -1583,6 +1583,35 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tauri-apps/cli@npm:1.0.0-beta-rc.2":
+  version: 1.0.0-beta-rc.2
+  resolution: "@tauri-apps/cli@npm:1.0.0-beta-rc.2"
+  dependencies:
+    "@tauri-apps/toml": 2.2.4
+    chalk: 4.1.0
+    cross-env: 7.0.3
+    cross-spawn: 7.0.3
+    fs-extra: 9.1.0
+    got: 11.8.2
+    imagemin: 7.0.1
+    imagemin-optipng: 8.0.0
+    imagemin-pngquant: 9.0.2
+    imagemin-zopfli: 7.0.0
+    inquirer: 8.0.0
+    is-png: 2.0.0
+    minimist: 1.2.5
+    ms: 2.1.3
+    png2icons: 2.0.1
+    read-chunk: 3.2.0
+    semver: 7.3.5
+    sharp: 0.28.1
+    update-notifier: 5.1.0
+  bin:
+    tauri: bin/tauri.js
+  checksum: 11641522122aa1c4b0aa2fae9ddf8b39e8dfae648c27f8de91ba4e994d4e67180d31d7c1a3230d3b256e84731636e3cc2254a61c9d4da1587a7dc2ab690ce8cc
+  languageName: node
+  linkType: hard
+
 "@tauri-apps/cli@npm:^1.0.0-beta.2":
   version: 1.0.0-beta-rc.4
   resolution: "@tauri-apps/cli@npm:1.0.0-beta-rc.4"
@@ -1940,7 +1969,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vue/cli-shared-utils@npm:^4.5.13":
+"@vue/cli-shared-utils@npm:^4.1.1, @vue/cli-shared-utils@npm:^4.5.13":
   version: 4.5.13
   resolution: "@vue/cli-shared-utils@npm:4.5.13"
   dependencies:
@@ -3176,6 +3205,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"chalk@npm:4.1.0":
+  version: 4.1.0
+  resolution: "chalk@npm:4.1.0"
+  dependencies:
+    ansi-styles: ^4.1.0
+    supports-color: ^7.1.0
+  checksum: f860285b419f9e925c2db0f45ffa88aa8794c14b80cc5d01ff30930bcfc384996606362706f0829cf557f6d36152a5fb2d227ad63c4bc90e2ec9e9dbed4a3c07
+  languageName: node
+  linkType: hard
+
 "chalk@npm:4.1.1, chalk@npm:^4.1.0":
   version: 4.1.1
   resolution: "chalk@npm:4.1.1"
@@ -4363,7 +4402,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"execa@npm:^3.3.0":
+"execa@npm:^3.3.0, execa@npm:^3.4.0":
   version: 3.4.0
   resolution: "execa@npm:3.4.0"
   dependencies:
@@ -4590,7 +4629,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fast-glob@npm:^3.1.1":
+"fast-glob@npm:^3.0.3, fast-glob@npm:^3.1.1":
   version: 3.2.5
   resolution: "fast-glob@npm:3.2.5"
   dependencies:
@@ -4652,6 +4691,13 @@ __metadata:
   version: 5.2.0
   resolution: "file-type@npm:5.2.0"
   checksum: 55776adbabbb58fcd13e11cf15dee6818945e25156b631f0795b810b4c14abb4e7107dffd063c76a2d53e9df7fb15f4e5ea8a81e59d282bf4a9d7321c7741bb8
+  languageName: node
+  linkType: hard
+
+"file-type@npm:^12.0.0":
+  version: 12.4.2
+  resolution: "file-type@npm:12.4.2"
+  checksum: 3f822c6254538948b3d193dcfd208de711b3ceeac33169605b327a9e4bb77e10f6492ecbd20ecf471e854df697ed884a0c9f29ff32120499dbbec765e338b796
   languageName: node
   linkType: hard
 
@@ -5175,6 +5221,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"globby@npm:^10.0.0":
+  version: 10.0.2
+  resolution: "globby@npm:10.0.2"
+  dependencies:
+    "@types/glob": ^7.1.1
+    array-union: ^2.1.0
+    dir-glob: ^3.0.1
+    fast-glob: ^3.0.3
+    glob: ^7.1.3
+    ignore: ^5.1.1
+    merge2: ^1.2.3
+    slash: ^3.0.0
+  checksum: 53924c2b46f104d99a6b15da92b9f9f1e9f004bce745fdf56cf985afd615897bd6fd8fe01303f5758943e643c0885e8abaae0b5a596c13523c9431bf071c3f23
+  languageName: node
+  linkType: hard
+
 "globby@npm:^11.0.2, globby@npm:^11.0.3":
   version: 11.0.3
   resolution: "globby@npm:11.0.3"
@@ -5299,7 +5361,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graceful-fs@npm:^4.1.10, graceful-fs@npm:^4.1.11, graceful-fs@npm:^4.1.2, graceful-fs@npm:^4.1.3, graceful-fs@npm:^4.1.6, graceful-fs@npm:^4.2.0, graceful-fs@npm:^4.2.4, graceful-fs@npm:^4.2.6":
+"graceful-fs@npm:^4.1.10, graceful-fs@npm:^4.1.11, graceful-fs@npm:^4.1.2, graceful-fs@npm:^4.1.3, graceful-fs@npm:^4.1.6, graceful-fs@npm:^4.2.0, graceful-fs@npm:^4.2.2, graceful-fs@npm:^4.2.4, graceful-fs@npm:^4.2.6":
   version: 4.2.6
   resolution: "graceful-fs@npm:4.2.6"
   checksum: 84d39c7756892553da990a9db7e45f844b3309b37b5a00174cbb4748476f2250c54f24594d4d252f64f085c65c2fdac7c809419bf6d55f0e6e42eb07ac0f5bf2
@@ -5672,7 +5734,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ignore@npm:^5.1.4":
+"ignore@npm:^5.1.1, ignore@npm:^5.1.4":
   version: 5.1.8
   resolution: "ignore@npm:5.1.8"
   checksum: b08e3d5b5d94eca13475f29a5d47d221060e9cdd7e38d7647088e29d90130669a970fecbc4cdb41b8fa295c6673740c729d3dc05dadc381f593efb42282cbf9f
@@ -5711,6 +5773,21 @@ __metadata:
     is-png: ^2.0.0
     zopflipng-bin: ^6.0.0
   checksum: 94151c2a3e305479bb11f432ba2a0176e1f5ab981429710866e07296f73f21350c2975a71ea42d0ea5f40e01ff2b11f20877820fdd1c07740edc9603bfd0cfdb
+  languageName: node
+  linkType: hard
+
+"imagemin@npm:7.0.1":
+  version: 7.0.1
+  resolution: "imagemin@npm:7.0.1"
+  dependencies:
+    file-type: ^12.0.0
+    globby: ^10.0.0
+    graceful-fs: ^4.2.2
+    junk: ^3.1.0
+    make-dir: ^3.0.0
+    p-pipe: ^3.0.0
+    replace-ext: ^1.0.0
+  checksum: 059db7bb593dd9c234257a7a5540f642ce3d0de9f24acdaf537984b88f49463972383f086396ee82efe1a09a660b2c25b1051ab2e1df38297d40564ff732cff9
   languageName: node
   linkType: hard
 
@@ -6201,17 +6278,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"is-png@npm:2.0.0, is-png@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "is-png@npm:2.0.0"
+  checksum: 7e343b3dabbe32599ca9059ff22f89990bb4a8a000de94d2a50a7727ebaf53f012e9a73ced3f4f64527435010640c0b3478d99e172446846d157c5d462999070
+  languageName: node
+  linkType: hard
+
 "is-png@npm:3.0.0":
   version: 3.0.0
   resolution: "is-png@npm:3.0.0"
   checksum: bbec9a67cb0c56126e54fa26d31fdcc1e598f37673acd25822e0b2c9cacab6e5a86d77963d357f75727dd47553ab899776c597f3746f39006c42ba1cd5bf06bd
-  languageName: node
-  linkType: hard
-
-"is-png@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "is-png@npm:2.0.0"
-  checksum: 7e343b3dabbe32599ca9059ff22f89990bb4a8a000de94d2a50a7727ebaf53f012e9a73ced3f4f64527435010640c0b3478d99e172446846d157c5d462999070
   languageName: node
   linkType: hard
 
@@ -7789,6 +7866,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"p-pipe@npm:^3.0.0":
+  version: 3.1.0
+  resolution: "p-pipe@npm:3.1.0"
+  checksum: 314cb0d651bb446f7351f66baa9b3f5ccd50fd579836ef17765d21442e6eef0a15f6173211b9904748c6c591baeee2fbf7b283d34fa1602285980a09d195834a
+  languageName: node
+  linkType: hard
+
 "p-pipe@npm:^4.0.0":
   version: 4.0.0
   resolution: "p-pipe@npm:4.0.0"
@@ -8574,6 +8658,13 @@ __metadata:
   dependencies:
     is-finite: ^1.0.0
   checksum: a788561778bfcbe4fc6fd15cb912ed53665933514524e4b5a998934ef20793c0afd21229f411d15bc5b7ab171eca7ac531655070f1dfc427f723bae57b61d55a
+  languageName: node
+  linkType: hard
+
+"replace-ext@npm:^1.0.0":
+  version: 1.0.1
+  resolution: "replace-ext@npm:1.0.1"
+  checksum: 29b0f4ec6fda1591eb9b7c2d300b3a099f61ab0f6870ac5c62a5fa1cc8208085b8c5bf77684e76dcddfc37734831449c92ac488bc2ba9d899476db6be9b4240c
   languageName: node
   linkType: hard
 
@@ -9381,6 +9472,7 @@ __metadata:
     "@tauri-apps/api": ^1.0.0-beta.1
     "@tauri-apps/cli": ^1.0.0-beta.2
     "@vue/cli": ^4.5.13
+    vue-cli-plugin-tauri: ~1.0.0-beta.2
   languageName: unknown
   linkType: soft
 
@@ -10269,6 +10361,17 @@ typescript@~4.1.5:
     core-util-is: 1.0.2
     extsprintf: ^1.2.0
   checksum: 38ea80312cb42e5e8b4ac562d108d675b2354a79f8f125d363671f692657461b9181fd26f4fc9acdca433f8afee099cb78058806e1303e6b15b8fb022affba94
+  languageName: node
+  linkType: hard
+
+"vue-cli-plugin-tauri@npm:~1.0.0-beta.2":
+  version: 1.0.0-beta-rc.2
+  resolution: "vue-cli-plugin-tauri@npm:1.0.0-beta-rc.2"
+  dependencies:
+    "@tauri-apps/cli": 1.0.0-beta-rc.2
+    "@vue/cli-shared-utils": ^4.1.1
+    execa: ^3.4.0
+  checksum: b1dafdab536263d9832888769320c5b7fd5044a684c97fbf5fd5421c7ad8f019dd2c7e643cc05a8da7f77c15f170a8f6db295ccd322c237f6e26dfad404f2a28
   languageName: node
   linkType: hard
 
