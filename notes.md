@@ -1,8 +1,11 @@
+notes.md contains miscelaneous notes, instructions, and links that I found useful while 
+
 # Project setup
-Following [Tauri Setup](https://tauri.studio/en/docs/getting-started/setup-linux)
+Tauri is under active development, and I started using it a couple days after the beta release.  I mainly followed the [Tauri Setup](https://tauri.studio/en/docs/getting-started/setup-linux) guide, but ran into a couple issues with the project structure and yarn 2.
+
 WSL had additional requirements, including updating WSL to 2, installing vcXsrv, allowing vcXsrv to accept connections on local / public networks, and exporting DISPLAY as described in the tauri docs.
 
-Install system dependencies, rust, and node.js
+Install the system dependencies, rust, and node.js as described here: https://tauri.studio/en/docs/getting-started/setup-linux
 
 ## Install NVM
 nvm install node --latest-npm
