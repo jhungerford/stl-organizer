@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Organizes 3D printing downloads",
   "author": "John Hungerford <jhungerford@gmail.com>",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "tauri:build": "vue-cli-service tauri:build",
     "tauri:serve": "vue-cli-service tauri:serve"
