@@ -1,0 +1,63 @@
+{
+  "name": "stl-organizer",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Desktop application to organize downloaded 3D printing files.",
+  "author": {
+    "name": "John Hungerford",
+    "email": "jhungerford@gmail.com"
+  },
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "tauri:build": "vue-cli-service tauri:build",
+    "tauri:serve": "vue-cli-service tauri:serve"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "@vue/cli": "^4.5.13",
+    "core-js": "^3.6.5",
+    "vue": "^3.0.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/compiler-sfc": "^3.0.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^7.0.0",
+    "vue-cli-plugin-tauri": "~1.0.0-beta.2"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/vue3-essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "_id": "stl-organizer@1.0.0",
+  "bugs": {
+    "url": "https://github.com/jhungerford/stl-organizer/issues"
+  },
+  "homepage": "https://github.com/jhungerford/stl-organizer#readme",
+  "license": "MIT",
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jhungerford/stl-organizer.git"
+  }
+}
