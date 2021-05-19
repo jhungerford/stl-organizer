@@ -1661,6 +1661,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tauri-apps/api@npm:^1.0.0-beta.1":
+  version: 1.0.0-beta-rc.3
+  resolution: "@tauri-apps/api@npm:1.0.0-beta-rc.3"
+  checksum: a2c02fb24cdfb5f17fd3f18df35afcb848afb37bd978c2e45e162bddfcd1d7785f23a07aee0d0bd189cd4a4f8538659abbdf0dc54f9b078b0ce22ee480860734
+  languageName: node
+  linkType: hard
+
 "@tauri-apps/cli@npm:1.0.0-beta-rc.2":
   version: 1.0.0-beta-rc.2
   resolution: "@tauri-apps/cli@npm:1.0.0-beta-rc.2"
@@ -1690,10 +1697,46 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tauri-apps/cli@npm:^1.0.0-beta.2":
+  version: 1.0.0-beta-rc.4
+  resolution: "@tauri-apps/cli@npm:1.0.0-beta-rc.4"
+  dependencies:
+    "@tauri-apps/toml": 2.2.4
+    chalk: 4.1.1
+    cross-env: 7.0.3
+    cross-spawn: 7.0.3
+    fs-extra: 9.1.0
+    got: 11.8.2
+    imagemin: 8.0.0
+    imagemin-optipng: 8.0.0
+    imagemin-pngquant: 9.0.2
+    imagemin-zopfli: 7.0.0
+    inquirer: 8.0.0
+    is-png: 3.0.0
+    minimist: 1.2.5
+    ms: 2.1.3
+    png2icons: 2.0.1
+    read-chunk: 3.2.0
+    semver: 7.3.5
+    sharp: 0.28.1
+    update-notifier: 5.1.0
+  bin:
+    tauri: bin/tauri.js
+  checksum: d640ce1ec8a52d68901b091b7645e169d35ece5057287d50870f8740adc1fed4b28742b66482e989103e2fdde16492647371e54c6ef7188348167f374678740f
+  languageName: node
+  linkType: hard
+
 "@tauri-apps/toml@npm:2.2.4":
   version: 2.2.4
   resolution: "@tauri-apps/toml@npm:2.2.4"
   checksum: b38e8312fedb8da4f75caa9ef04b08db426ae41c05d364b45c86900d55d186c04f81d66bba34e9dac05ccbe7c8ed3daf8d2e6ec2ca7b9d13aeb241434730a126
+  languageName: node
+  linkType: hard
+
+"@tokenizer/token@npm:^0.1.1":
+  version: 0.1.1
+  resolution: "@tokenizer/token@npm:0.1.1"
+  checksum: f495a1fe58da2cec4a45f02d302864484ecf3d00e343470b00ebcafd3248c3f252e0450e603838962f0ac3019477ad466b097134bc332d3f76441fc408a1dcfb
   languageName: node
   linkType: hard
 
@@ -1784,6 +1827,13 @@ __metadata:
   version: 2.8.10
   resolution: "@types/cors@npm:2.8.10"
   checksum: c3f3d6feee59ff75127fec3030d55c3d5f1adfc07953facdae67c47dcd54c83c46a5e92f08afa53542ec978da38a388697d30731019798cb157c9e96c64ef6c3
+  languageName: node
+  linkType: hard
+
+"@types/debug@npm:^4.1.5":
+  version: 4.1.5
+  resolution: "@types/debug@npm:4.1.5"
+  checksum: 416ad24bc589be0fb8c78bea972aa7d4ffdf6b136239701b1792674463b2dbf8c6707f6055ec484f79ec1f2b528ffef90c87e55df7e4a0f458184cad5bf0cfc8
   languageName: node
   linkType: hard
 
@@ -4499,6 +4549,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"chalk@npm:4.1.1, chalk@npm:^4.0.0, chalk@npm:^4.1.0":
+  version: 4.1.1
+  resolution: "chalk@npm:4.1.1"
+  dependencies:
+    ansi-styles: ^4.1.0
+    supports-color: ^7.1.0
+  checksum: 445c12db7aeed0046500a1e4184d31209a77d165654c885a789c41c8598a6a95bd2392180987cac572c967b93a2a730dda778bb7f87fa06ca63fd8592f8cc59f
+  languageName: node
+  linkType: hard
+
 "chalk@npm:^1.0.0":
   version: 1.1.3
   resolution: "chalk@npm:1.1.3"
@@ -4530,16 +4590,6 @@ __metadata:
     ansi-styles: ^4.1.0
     supports-color: ^7.1.0
   checksum: 4018b0c812880da595d0d7b8159939527b72f58d3370e2fdc1a24d9abd460bab851695d7eca014082f110d5702d1221b05493fec430ccce375de907d50cc48c1
-  languageName: node
-  linkType: hard
-
-"chalk@npm:^4.0.0, chalk@npm:^4.1.0":
-  version: 4.1.1
-  resolution: "chalk@npm:4.1.1"
-  dependencies:
-    ansi-styles: ^4.1.0
-    supports-color: ^7.1.0
-  checksum: 445c12db7aeed0046500a1e4184d31209a77d165654c885a789c41c8598a6a95bd2392180987cac572c967b93a2a730dda778bb7f87fa06ca63fd8592f8cc59f
   languageName: node
   linkType: hard
 
@@ -7060,6 +7110,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"file-type@npm:^14.6.0":
+  version: 14.7.1
+  resolution: "file-type@npm:14.7.1"
+  dependencies:
+    readable-web-to-node-stream: ^2.0.0
+    strtok3: ^6.0.3
+    token-types: ^2.0.0
+    typedarray-to-buffer: ^3.1.5
+  checksum: 2190844a118535c42268011b412ddb9f347d7144653072dab970bcbd396209ebd7897335cc8975e7a80257aad5c339e4be5e2b0148fa9a02b21effcb6d212a27
+  languageName: node
+  linkType: hard
+
 "file-type@npm:^3.8.0":
   version: 3.9.0
   resolution: "file-type@npm:3.9.0"
@@ -7743,7 +7805,7 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"globby@npm:^11.0.2":
+"globby@npm:^11.0.2, globby@npm:^11.0.3":
   version: 11.0.3
   resolution: "globby@npm:11.0.3"
   dependencies:
@@ -8535,7 +8597,7 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"ieee754@npm:^1.1.13, ieee754@npm:^1.1.4":
+"ieee754@npm:^1.1.13, ieee754@npm:^1.1.4, ieee754@npm:^1.2.1":
   version: 1.2.1
   resolution: "ieee754@npm:1.2.1"
   checksum: 6c1cfab995ecab3b0dbb6cfb7e192686eb02f0f8e788f2d962e1fc02e2d5ab38a85e06d417221f136bd029663a77cdb920d99605d68d3730a05597dd7910426a
@@ -8617,6 +8679,20 @@ fsevents@~2.3.1:
     p-pipe: ^3.0.0
     replace-ext: ^1.0.0
   checksum: 059db7bb593dd9c234257a7a5540f642ce3d0de9f24acdaf537984b88f49463972383f086396ee82efe1a09a660b2c25b1051ab2e1df38297d40564ff732cff9
+  languageName: node
+  linkType: hard
+
+"imagemin@npm:8.0.0":
+  version: 8.0.0
+  resolution: "imagemin@npm:8.0.0"
+  dependencies:
+    file-type: ^14.6.0
+    globby: ^11.0.3
+    graceful-fs: ^4.2.6
+    junk: ^3.1.0
+    p-pipe: ^4.0.0
+    replace-ext: ^2.0.0
+  checksum: a981bb529e4242bdc2d9173822dfc272c9e29d6ce9f8a6a27eeb42cbc73aa978d35c1007e6fced3a7e7a8d1bfb8cae857d356ee06ace6b1ccd3b4c26fe502686
   languageName: node
   linkType: hard
 
@@ -9283,6 +9359,13 @@ fsevents@~2.3.1:
   version: 2.0.0
   resolution: "is-png@npm:2.0.0"
   checksum: 7e343b3dabbe32599ca9059ff22f89990bb4a8a000de94d2a50a7727ebaf53f012e9a73ced3f4f64527435010640c0b3478d99e172446846d157c5d462999070
+  languageName: node
+  linkType: hard
+
+"is-png@npm:3.0.0":
+  version: 3.0.0
+  resolution: "is-png@npm:3.0.0"
+  checksum: bbec9a67cb0c56126e54fa26d31fdcc1e598f37673acd25822e0b2c9cacab6e5a86d77963d357f75727dd47553ab899776c597f3746f39006c42ba1cd5bf06bd
   languageName: node
   linkType: hard
 
@@ -11482,6 +11565,13 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
+"p-pipe@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "p-pipe@npm:4.0.0"
+  checksum: 0788b8c66aa10b4189b239100e56e26590d58be93f355ff38fd81fcf5133b0f84ee10b2dfaee18255119b9fbf3b7c4732cb36444ff1294b38ce4a616b451b12b
+  languageName: node
+  linkType: hard
+
 "p-reduce@npm:^1.0.0":
   version: 1.0.0
   resolution: "p-reduce@npm:1.0.0"
@@ -11786,6 +11876,13 @@ fsevents@~2.3.1:
     safe-buffer: ^5.0.1
     sha.js: ^2.4.8
   checksum: 12ac46c71db0613f5e45824d65598a31b4fb09bb860cde8024919778be7971468f2c6b010250d5bc9907a247f85580b560fd5b78b09263d207e8bdf3963c83c7
+  languageName: node
+  linkType: hard
+
+"peek-readable@npm:^3.1.3":
+  version: 3.1.3
+  resolution: "peek-readable@npm:3.1.3"
+  checksum: 735be445bfe235a1776eedc060083a7de34cc447d36d839d7f9ee16e0fc3ad2e2ee10a1c567e0bb812a91b5bb044b53fa69d8a1c5d04788aefb26d665ea845f0
   languageName: node
   linkType: hard
 
@@ -12875,6 +12972,13 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
+"readable-web-to-node-stream@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "readable-web-to-node-stream@npm:2.0.0"
+  checksum: 18bb8c4618e95975d13312ad6ac543a3be7ba1f30e2a21dbeb3851abf85a9358cd65e68377f470c285c0862ba460f6c1f61a049561ca536993ba6807da5e9421
+  languageName: node
+  linkType: hard
+
 "readdirp@npm:^2.2.1":
   version: 2.2.1
   resolution: "readdirp@npm:2.2.1"
@@ -13104,6 +13208,13 @@ fsevents@~2.3.1:
   version: 1.0.1
   resolution: "replace-ext@npm:1.0.1"
   checksum: 29b0f4ec6fda1591eb9b7c2d300b3a099f61ab0f6870ac5c62a5fa1cc8208085b8c5bf77684e76dcddfc37734831449c92ac488bc2ba9d899476db6be9b4240c
+  languageName: node
+  linkType: hard
+
+"replace-ext@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "replace-ext@npm:2.0.0"
+  checksum: 24d9ce678b8040f9992cf5fb199b885600ec73a8dc27e7ae9bc6177305d2811494842c81773fe9b2ad29d912728aaa9ffdbb7f6b6549218845c69f93a65d6176
   languageName: node
   linkType: hard
 
@@ -14161,6 +14272,8 @@ fsevents@~2.3.1:
   version: 0.0.0-use.local
   resolution: "stl-organizer@workspace:."
   dependencies:
+    "@tauri-apps/api": ^1.0.0-beta.1
+    "@tauri-apps/cli": ^1.0.0-beta.2
     "@vue/cli": ^4.5.13
     "@vue/cli-plugin-babel": ~4.5.0
     "@vue/cli-plugin-eslint": ~4.5.0
@@ -14423,6 +14536,17 @@ fsevents@~2.3.1:
   dependencies:
     escape-string-regexp: ^1.0.2
   checksum: 5a01031e8b6662fbc2397360916e0b8ee66cc74c15a292c15ab82b5067728165ad730fa5289b12c2875e17660e21450515958a83636462bba3900ea5bc964082
+  languageName: node
+  linkType: hard
+
+"strtok3@npm:^6.0.3":
+  version: 6.0.8
+  resolution: "strtok3@npm:6.0.8"
+  dependencies:
+    "@tokenizer/token": ^0.1.1
+    "@types/debug": ^4.1.5
+    peek-readable: ^3.1.3
+  checksum: 3109c9317923b5927e6c476f76ec75b8a5ec7e10c1139fd200f2b398e0293fbaea49e52db8a92548c3b857776de2b1abf69f4cdcc4d23ab69f1599e59044b7a1
   languageName: node
   linkType: hard
 
@@ -14855,6 +14979,16 @@ fsevents@~2.3.1:
   version: 1.0.0
   resolution: "toidentifier@npm:1.0.0"
   checksum: 95720e8a0f98f1525f50ccbecbc2a23f0a1b4e448de03819dbbeda03adf0d2010fe64525fbc9d549765242550d341bb891672e4ac0b2cac58613cdd742324255
+  languageName: node
+  linkType: hard
+
+"token-types@npm:^2.0.0":
+  version: 2.1.1
+  resolution: "token-types@npm:2.1.1"
+  dependencies:
+    "@tokenizer/token": ^0.1.1
+    ieee754: ^1.2.1
+  checksum: bd57cce67c87f62f4902bd0a51066b2a98ec4397c9f54438f620d3dcf2c838fa0387690865bd8764d67211da46dd46a4bee070af923ed11d31fd2f565030687b
   languageName: node
   linkType: hard
 

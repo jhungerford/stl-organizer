@@ -82,6 +82,10 @@ Install the Vue CLI plugin tauri
 Adjust package versions in src-tauri/Cargo.toml
 `yarn tauri:serve` to check that it's working
 
+Add tauri cli: https://tauri.studio/en/docs/usage/development/integration
+`yarn add @tauri-apps/cli`
+`yarn tauri info` to check that the tauri cli is working
+
 ## Updates
 `yarn add @tauri-apps/cli` adds the tauri command.  RC builds are published frequently, so `yarn upgrade @tauri-apps/cli @tauri-apps/api --latest` updates tauri if `yarn tauri ...` dies after printing `Dowloading Rust CLI`.  `yarn upgrade vue-cli-plugin-tauri --latest` upgrades the vue-cli-plugin-tauri.  Need to update the tauri version in Cargo.toml too.  `cargo outdated -r tauri` lists info about the latest cargo package, and `yarn outdated @tauri-apps/cli` prints info about the yarn packages.
 

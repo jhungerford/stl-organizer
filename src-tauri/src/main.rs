@@ -3,8 +3,14 @@
   windows_subsystem = "windows"
 )]
 
+#[tauri::command]
+fn sample_command() {
+  println!("Command invoked from JS");
+}
+
 fn main() {
   tauri::Builder::default()
-    .run(tauri::generate_context!())
-    .expect("error while running tauri application");
+      .invoke_handler(tauri::generate_handler![sample_command])
+      .run(tauri::generate_context!())
+      .expect("error while running tauri application");
 }

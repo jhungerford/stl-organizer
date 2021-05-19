@@ -16,6 +16,8 @@
   },
   "main": "index.js",
   "dependencies": {
+    "@tauri-apps/api": "^1.0.0-beta.1",
+    "@tauri-apps/cli": "^1.0.0-beta.2",
     "@vue/cli": "^4.5.13",
     "core-js": "^3.6.5",
     "vue": "^3.0.0"
