@@ -1601,6 +1601,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@quasar/extras@npm:^1.0.0":
+  version: 1.10.4
+  resolution: "@quasar/extras@npm:1.10.4"
+  checksum: 428adda9afb411e42cab8f556d815d32a30a86949da36dc10f5bb699dbdbcf6526b9836623addc2a3cb948feb65dabb7da7c97193e4d9650312fbb34ced2e01b
+  languageName: node
+  linkType: hard
+
 "@sindresorhus/is@npm:^0.14.0":
   version: 0.14.0
   resolution: "@sindresorhus/is@npm:0.14.0"
@@ -1936,7 +1943,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/json-schema@npm:^7.0.5":
+"@types/json-schema@npm:^7.0.5, @types/json-schema@npm:^7.0.6":
   version: 7.0.7
   resolution: "@types/json-schema@npm:7.0.7"
   checksum: b9d2c509fa4e0b82f58e73f5e6ab76c60ff1884ba41bb82f37fb1cece226d4a3e5a62fedf78a43da0005373a6713d9abe61c1e592906402c41c08ad6ab26d52b
@@ -3039,7 +3046,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ajv@npm:^6.1.0, ajv@npm:^6.10.0, ajv@npm:^6.10.2, ajv@npm:^6.12.3, ajv@npm:^6.12.4":
+"ajv@npm:^6.1.0, ajv@npm:^6.10.0, ajv@npm:^6.10.2, ajv@npm:^6.12.3, ajv@npm:^6.12.4, ajv@npm:^6.12.5":
   version: 6.12.6
   resolution: "ajv@npm:6.12.6"
   dependencies:
@@ -4607,6 +4614,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"chokidar@npm:>=3.0.0 <4.0.0, chokidar@npm:^3.4.1":
+  version: 3.5.1
+  resolution: "chokidar@npm:3.5.1"
+  dependencies:
+    anymatch: ~3.1.1
+    braces: ~3.0.2
+    fsevents: ~2.3.1
+    glob-parent: ~5.1.0
+    is-binary-path: ~2.1.0
+    is-glob: ~4.0.1
+    normalize-path: ~3.0.0
+    readdirp: ~3.5.0
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  checksum: 61b3f710f9e7dc69d76f638d8b0d37bad586497444165125ca8062f7192695f35403b5f622cbd7dfdd06805201ceaba40ff90e53ea2974df9a8087861192a99b
+  languageName: node
+  linkType: hard
+
 "chokidar@npm:^2.1.8":
   version: 2.1.8
   resolution: "chokidar@npm:2.1.8"
@@ -4627,25 +4653,6 @@ __metadata:
     fsevents:
       optional: true
   checksum: 0758dcc7c6c7ace5924cf3c68088210932d391ab41026376b0adb8e07013ac87232e029f13468dfc9ca4dd59adae62a2b7eaedebb6c4e4f0ba92cbf3ac9e3721
-  languageName: node
-  linkType: hard
-
-"chokidar@npm:^3.4.1":
-  version: 3.5.1
-  resolution: "chokidar@npm:3.5.1"
-  dependencies:
-    anymatch: ~3.1.1
-    braces: ~3.0.2
-    fsevents: ~2.3.1
-    glob-parent: ~5.1.0
-    is-binary-path: ~2.1.0
-    is-glob: ~4.0.1
-    normalize-path: ~3.0.0
-    readdirp: ~3.5.0
-  dependenciesMeta:
-    fsevents:
-      optional: true
-  checksum: 61b3f710f9e7dc69d76f638d8b0d37bad586497444165125ca8062f7192695f35403b5f622cbd7dfdd06805201ceaba40ff90e53ea2974df9a8087861192a99b
   languageName: node
   linkType: hard
 
@@ -9851,6 +9858,13 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
+"klona@npm:^2.0.4":
+  version: 2.0.4
+  resolution: "klona@npm:2.0.4"
+  checksum: be4a0c784135b6a75ac2c5ac9564894807aa050de041ac775a20d3ee46969ac5c3d37503d12c215c7decb592196e59e22852fd0cf28ac0cc29fe3a6df9168624
+  languageName: node
+  linkType: hard
+
 "latest-version@npm:^5.1.0":
   version: 5.1.0
   resolution: "latest-version@npm:5.1.0"
@@ -10850,7 +10864,7 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"neo-async@npm:^2.5.0, neo-async@npm:^2.6.0, neo-async@npm:^2.6.1":
+"neo-async@npm:^2.5.0, neo-async@npm:^2.6.0, neo-async@npm:^2.6.1, neo-async@npm:^2.6.2":
   version: 2.6.2
   resolution: "neo-async@npm:2.6.2"
   checksum: 34a8f5309135be258a97082af810ea43700a3e0121e7b1ea31b3e22e2663d7c0d502cd949abb6d1ab8c11abfd04500ee61721ec5408b2d4bef8105241fd8a4c2
@@ -12795,6 +12809,13 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
+"quasar@npm:^2.0.0-beta.1":
+  version: 2.0.0-beta.17
+  resolution: "quasar@npm:2.0.0-beta.17"
+  checksum: 54d3cd6c3e79928f4c4ebcc799d88a59d3d4cf38c072dca9ba9dee0295c72b4c99bbb2faee2f207153cfc636ec3dac82b525af6d5df08952fb3030af79d8c842
+  languageName: node
+  linkType: hard
+
 "query-string@npm:^4.1.0":
   version: 4.3.4
   resolution: "query-string@npm:4.3.4"
@@ -13514,6 +13535,42 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
+"sass-loader@npm:^10.1.0":
+  version: 10.2.0
+  resolution: "sass-loader@npm:10.2.0"
+  dependencies:
+    klona: ^2.0.4
+    loader-utils: ^2.0.0
+    neo-async: ^2.6.2
+    schema-utils: ^3.0.0
+    semver: ^7.3.2
+  peerDependencies:
+    fibers: ">= 3.1.0"
+    node-sass: ^4.0.0 || ^5.0.0 || ^6.0.0
+    sass: ^1.3.0
+    webpack: ^4.36.0 || ^5.0.0
+  peerDependenciesMeta:
+    fibers:
+      optional: true
+    node-sass:
+      optional: true
+    sass:
+      optional: true
+  checksum: 1c8914920749f2e2e404e4663c9cce6ef4d38dc7fb30117c722c25b76257ebee444c90d20e174adf621036e1afefaadc8f89b69fd912347f4618b7401afae53c
+  languageName: node
+  linkType: hard
+
+"sass@npm:^1.29.0":
+  version: 1.32.13
+  resolution: "sass@npm:1.32.13"
+  dependencies:
+    chokidar: ">=3.0.0 <4.0.0"
+  bin:
+    sass: sass.js
+  checksum: 93913232ec9efbd9edbe63e9c32e08c90e2ca7e1b75079b570207aa828386ad1391a0944a06411f2b2add88803a41dd3ecbfbbcf45ec4c2b288154e17243e71f
+  languageName: node
+  linkType: hard
+
 "sax@npm:>=0.6.0, sax@npm:~1.2.4":
   version: 1.2.4
   resolution: "sax@npm:1.2.4"
@@ -13540,6 +13597,17 @@ fsevents@~2.3.1:
     ajv: ^6.12.4
     ajv-keywords: ^3.5.2
   checksum: 3851bcc7e44a3f35d3ca96e460c598aa24cec9fe395b196395316a043dc111d25735a9a49b1a115e4b52d5ed0d8bbcfb9fe1bfd077610f192b613e020d3f3ef2
+  languageName: node
+  linkType: hard
+
+"schema-utils@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "schema-utils@npm:3.0.0"
+  dependencies:
+    "@types/json-schema": ^7.0.6
+    ajv: ^6.12.5
+    ajv-keywords: ^3.5.2
+  checksum: a084f593f222560c412a4d8f40c92386c01c1c709f27c0672c2f02927a4d4d475f57f8b8e91198d0defb452add160476a03f07a05b26200a64b5124fa874e158
   languageName: node
   linkType: hard
 
@@ -14272,6 +14340,7 @@ fsevents@~2.3.1:
   version: 0.0.0-use.local
   resolution: "stl-organizer@workspace:."
   dependencies:
+    "@quasar/extras": ^1.0.0
     "@tauri-apps/api": ^1.0.0-beta.1
     "@tauri-apps/cli": ^1.0.0-beta.2
     "@vue/cli": ^4.5.13
@@ -14283,8 +14352,14 @@ fsevents@~2.3.1:
     core-js: ^3.6.5
     eslint: ^6.7.2
     eslint-plugin-vue: ^7.0.0
+    loader-utils: ^2.0.0
+    quasar: ^2.0.0-beta.1
+    sass: ^1.29.0
+    sass-loader: ^10.1.0
     vue: ^3.0.0
+    vue-cli-plugin-quasar: next
     vue-cli-plugin-tauri: ~1.0.0-beta.2
+    webpack: ^4.0.0
   languageName: unknown
   linkType: soft
 
@@ -15605,6 +15680,15 @@ typescript@~4.1.5:
   languageName: node
   linkType: hard
 
+"vue-cli-plugin-quasar@npm:next":
+  version: 4.0.0-beta.2
+  resolution: "vue-cli-plugin-quasar@npm:4.0.0-beta.2"
+  dependencies:
+    webpack-merge: ^5.7.3
+  checksum: 4ef86a72ca53a1095e08d8768ff23a119689bf8381c0fdb0f14eb0ac336bbb2009ab4cd6509d09442ce6445b507e437aca70fcb3037ed9bf1bf5a81fa62524a5
+  languageName: node
+  linkType: hard
+
 "vue-cli-plugin-tauri@npm:~1.0.0-beta.2":
   version: 1.0.0-beta-rc.2
   resolution: "vue-cli-plugin-tauri@npm:1.0.0-beta-rc.2"
@@ -15900,6 +15984,16 @@ typescript@~4.1.5:
   languageName: node
   linkType: hard
 
+"webpack-merge@npm:^5.7.3":
+  version: 5.7.3
+  resolution: "webpack-merge@npm:5.7.3"
+  dependencies:
+    clone-deep: ^4.0.1
+    wildcard: ^2.0.0
+  checksum: 5e28f66f597cb34ac5f7ca0881cd3f106265091e47d7cda9ae00f4902283efdfdab36a70e34a9cf7b1467aac021178981513393b7dcddbb84caf11920f269379
+  languageName: node
+  linkType: hard
+
 "webpack-sources@npm:^1.1.0, webpack-sources@npm:^1.4.0, webpack-sources@npm:^1.4.1":
   version: 1.4.3
   resolution: "webpack-sources@npm:1.4.3"
@@ -16023,6 +16117,13 @@ typescript@~4.1.5:
   dependencies:
     string-width: ^4.0.0
   checksum: 729c30582e49bdcb1372216eedfd71d1640a1344a4b4e970bc9f33d575b56b130f530b383fbab2cf2bcffb76ea4357e6a66939778d8de91ca66037651d94e01a
+  languageName: node
+  linkType: hard
+
+"wildcard@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "wildcard@npm:2.0.0"
+  checksum: 207baede4d6d41fc1aefcc4727c95ca6f29eaaf4d66478665fe0ac17232709637426ae96fd79deb3b68da3564e7bde7f2be63e5c3665ac8f63ee92364c0a2dd3
   languageName: node
   linkType: hard
 
