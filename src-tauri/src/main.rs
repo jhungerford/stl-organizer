@@ -3,12 +3,7 @@
   windows_subsystem = "windows"
 )]
 
-#[tauri::command]
-fn settings_get_dirs() -> Result<Vec<String>, String> {
-  Ok(vec![
-    "~/Downloads".to_string()
-  ])
-}
+mod settings;
 
 #[tauri::command]
 fn sample_command() {
@@ -18,7 +13,7 @@ fn sample_command() {
 fn main() {
   tauri::Builder::default()
       .invoke_handler(tauri::generate_handler![sample_command])
-      .invoke_handler(tauri::generate_handler![settings_get_dirs])
+      .invoke_handler(tauri::generate_handler![settings::get_dirs])
       .run(tauri::generate_context!())
       .expect("error while running tauri application");
 }
