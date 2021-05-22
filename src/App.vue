@@ -1,4 +1,6 @@
 <template>
+  <Settings />
+  <!--
   <q-layout view="lHh Lpr lFf">
     <q-header elevated class="glossy">
       <q-toolbar>
@@ -79,17 +81,19 @@
       <HelloWorld />
     </q-page-container>
   </q-layout>
+  -->
 </template>
 
 <script>
 import { ref } from 'vue'
-import HelloWorld from './components/HelloWorld.vue'
+// import HelloWorld from './components/HelloWorld.vue'
+import Settings from './pages/Settings.vue'
 
 export default {
   name: 'LayoutDefault',
 
   components: {
-    HelloWorld
+    Settings
   },
 
   setup () {
