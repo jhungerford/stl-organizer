@@ -45,7 +45,7 @@ export default {
       this.error = this.dirs = null;
       this.loading = true;
 
-      invoke('get_dirs')
+      invoke('list_dirs')
           .then((dirs) => {
             this.loading = false;
             this.dirs = dirs;
