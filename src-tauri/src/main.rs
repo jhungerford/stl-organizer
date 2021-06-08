@@ -6,6 +6,7 @@
 use crate::settings::{InMemoryConnectionManager, ConnectionManager};
 
 mod settings;
+mod scan;
 
 fn main() {
   let conn_manager = InMemoryConnectionManager::new("stl-organizer")
