@@ -22,6 +22,27 @@ pub mod commands {
     }
 }
 
+pub struct Scanner<'a> {
+    tasks: Vec<ScanTask<'a>>
+}
+
+impl Scanner<'_> {
+    /// Creates a new Scanner that will do a full scan of the given directories.
+    pub fn new<'a>() -> Scanner<'a> {
+        Scanner {
+            tasks: vec![]
+        }
+    }
+
+    pub fn start(&self) {
+        for task in &self.tasks {
+            match task {
+                _ => unimplemented!()
+            }
+        }
+    }
+}
+
 // TODO: Scan tasks - expand directory, parse file, thingiverse lookup, browser downloads search
 enum ScanTask<'a> {
     Init,
@@ -55,10 +76,6 @@ enum FileType {
 struct FileInfo<'a> {
     file_type: FileType,
     path: &'a Path,
-}
-
-struct ScanContext {
-    
 }
 
 fn scan(path: &Path) -> Option<FileInfo> {
