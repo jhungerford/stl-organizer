@@ -1,6 +1,5 @@
 use std::{fs::{self, File}, path::Path};
 
-
 /// The commands module contains thin wrappers around the functions in the scan module
 /// to make them available to Tauri.
 pub mod commands {
@@ -23,7 +22,13 @@ pub mod commands {
     }
 }
 
-
+// TODO: Scan tasks - expand directory, parse file, thingiverse lookup, browser downloads search
+enum ScanTask<'a> {
+    Init,
+    ScanDir(File),
+    ScanStl(&'a Path),
+    ScanZip(&'a Path),
+}
 
 /// A scan looks for 3D printing files in the directories configured in settings,
 /// and ScanState tracks the state the 
@@ -50,6 +55,10 @@ enum FileType {
 struct FileInfo<'a> {
     file_type: FileType,
     path: &'a Path,
+}
+
+struct ScanContext {
+    
 }
 
 fn scan(path: &Path) -> Option<FileInfo> {

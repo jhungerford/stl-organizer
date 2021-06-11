@@ -3,10 +3,11 @@
   windows_subsystem = "windows"
 )]
 
-use crate::settings::{InMemoryConnectionManager, ConnectionManager};
+use crate::db::{ConnectionManager, InMemoryConnectionManager};
 
-mod settings;
+mod db;
 mod scan;
+mod settings;
 
 fn main() {
   let conn_manager = InMemoryConnectionManager::new("stl-organizer")
