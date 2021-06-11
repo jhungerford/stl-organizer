@@ -39,6 +39,7 @@ enum ScanState<'a> {
 }
 
 /// FileType 
+#[derive(Debug, Eq, PartialEq)]
 enum FileType {
     ThingiverseZip,
     Stl,
@@ -48,7 +49,7 @@ enum FileType {
 /// FileInfo contains details about a 3D printing file.
 struct FileInfo<'a> {
     file_type: FileType,
-    name: &'a str,
+    path: &'a Path,
 }
 
 fn scan(path: &Path) -> Option<FileInfo> {
@@ -69,17 +70,24 @@ fn scan(path: &Path) -> Option<FileInfo> {
     }
 
     match path.extension().unwrap().to_str() {
-        Some(".stl") => scan_stl(path),
-        Some(".zip") => scan_zip(path),
+        Some("stl") => scan_stl(path),
+        Some("zip") => scan_zip(path),
         _ => None,
     }
 }
 
 /// Scans the given stl file, returning information about the file.
-fn scan_stl(path: &Path) -> Option<FileInfo> {
-    unimplemented!()
+fn scan_stl<'a> (path: &'a Path) -> Option<FileInfo<'a>> {
+    Some(FileInfo {
+        file_type: FileType::Stl,
+        path
+    })
 }
 
+/// Scans the given zip file, returning information about the file.
+/// A thingiverse zip has files/ and images/ directories, a LICENSE.txt file, and a README.txt
+/// file containing a title like 'NAME by AUTHOR on Thingiverse: https://www.thingiverse.com/thing:1234'.
+/// Not all zip files are relevant, and not all thingiverse zip files fit this format.
 fn scan_zip(path: &Path) -> Option<FileInfo> {
     unimplemented!()
 }
@@ -96,13 +104,23 @@ mod tests {
 
     #[test]
     fn test_scan_stl() {
-        let path= Path::new("test/resources/Benchy.zip");
-        assert!(scan(path).is_some());
+        let file_name = "test/resources/freighterbenchy-v2.stl";
+        let path= Path::new(file_name);
+        let maybe_scanned = scan(path);
+
+        assert!(maybe_scanned.is_some());
+
+        let scanned = &maybe_scanned.unwrap();
+        assert_eq!(FileType::Stl, scanned.file_type);
+
+        assert!(scanned.path.to_str().unwrap().ends_with(file_name));
     }
 
     #[test]
     fn test_scan_thingiverse_archive() {
-        let path= Path::new("test/resources/freighterbenchy-v2.stl");
-        assert!(scan(path).is_some());
+        let path= Path::new("test/resources/Benchy.zip");
+        let scanned = scan(path);
+
+        assert!(scanned.is_some());
     }
 }
