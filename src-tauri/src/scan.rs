@@ -1,36 +1,42 @@
-use std::{fs::{self, File}, path::Path};
+use std::{fs::File, path::Path};
+
+use crate::{db::ConnectionManager, settings::Settings};
 
 /// The commands module contains thin wrappers around the functions in the scan module
 /// to make them available to Tauri.
 pub mod commands {
+    use crate::db::InMemoryConnectionManager;
+
     use super::*;
     use tauri::{ command, State };
 
     #[command]
-    pub fn scan_start() {
-        
+    pub fn scan_start(_scanner: State<Scanner<'_, '_, InMemoryConnectionManager>>) {
+        unimplemented!()
     }
 
     #[command]
-    pub fn scan_get() {
-
+    pub fn scan_get(_scanner: State<Scanner<'_, '_, InMemoryConnectionManager>>) {
+        unimplemented!()
     }
 
     #[command]
-    pub fn scan_progress() {
-
+    pub fn scan_progress(_scanner: State<Scanner<'_, '_, InMemoryConnectionManager>>) {
+        unimplemented!()
     }
 }
 
-pub struct Scanner<'a> {
-    tasks: Vec<ScanTask<'a>>
+pub struct Scanner<'a, 'b, T: ConnectionManager> {
+    tasks: Vec<&'a ScanTask<'a>>,
+    settings: Settings<'b, T>,
 }
 
-impl Scanner<'_> {
+impl<'a, 'b, T: ConnectionManager> Scanner<'a, 'b, T> {
     /// Creates a new Scanner that will do a full scan of the given directories.
-    pub fn new<'a>() -> Scanner<'a> {
+    pub fn new(conn_manager: &'b T) -> Scanner<'a, 'b, T> {
         Scanner {
-            tasks: vec![]
+            tasks: vec![],
+            settings: Settings::new(conn_manager)
         }
     }
 
@@ -114,7 +120,7 @@ fn scan_stl<'a> (path: &'a Path) -> Option<FileInfo<'a>> {
 /// A thingiverse zip has files/ and images/ directories, a LICENSE.txt file, and a README.txt
 /// file containing a title like 'NAME by AUTHOR on Thingiverse: https://www.thingiverse.com/thing:1234'.
 /// Not all zip files are relevant, and not all thingiverse zip files fit this format.
-fn scan_zip(path: &Path) -> Option<FileInfo> {
+fn scan_zip(_path: &Path) -> Option<FileInfo> {
     unimplemented!()
 }
 

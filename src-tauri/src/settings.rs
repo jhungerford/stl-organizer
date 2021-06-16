@@ -13,7 +13,7 @@ pub mod commands {
     /// `list_dirs` returns a list of all of the directories sql-organizer scans,
     /// in alphabetical order.
     #[command]
-    pub fn list_dirs(settings: State<Settings<InMemoryConnectionManager>>) -> Result<Vec<String>, SettingsError> {
+    pub fn list_dirs<'a>(settings: State<Settings<InMemoryConnectionManager>, 'a>) -> Result<Vec<String>, SettingsError> {
         settings.list_dirs()
     }
 
@@ -22,6 +22,14 @@ pub mod commands {
     pub fn add_dir(settings: State<Settings<InMemoryConnectionManager>>, dir: &str) -> Result<(), SettingsError> {
         settings.add_dir(dir)
     }
+}
+
+pub struct Commands {
+
+}
+
+impl Commands {
+
 }
 
 /// SettingsError is a unified error type for settings results.
@@ -63,13 +71,13 @@ impl From<DbError> for SettingsError {
     }
 }
 
-pub struct Settings<T: ConnectionManager> {
-    conn_manager: T
+pub struct Settings<'a, T: ConnectionManager> {
+    conn_manager: &'a T
 }
 
-impl<T: ConnectionManager> Settings<T> {
+impl<'a, T: ConnectionManager> Settings<'a, T> {
     /// Creates a new Settings that will store settings using the given connection manager.
-    pub fn new(conn_manager: T) -> Self {
+    pub fn new(conn_manager: &'a T) -> Self {
         Settings { conn_manager }
     }
 
@@ -111,7 +119,8 @@ mod tests {
 
     #[test]
     fn test_get_dirs_empty() {
-        let settings = create_test_settings("test_get_dirs_empty");
+        let conn_manager = create_db("test_get_dirs_empty");
+        let settings = Settings::new(&conn_manager);
 
         settings.clear_dirs().expect("Error clearing dirs");
 
@@ -124,7 +133,8 @@ mod tests {
 
     #[test]
     fn test_add_get_dirs() {
-        let settings = create_test_settings("test_add_dirs");
+        let conn_manager = create_db("test_add_dirs");
+        let settings = Settings::new(&conn_manager);
 
         settings.clear_dirs().expect("Error clearing dirs");
 
@@ -140,7 +150,8 @@ mod tests {
 
     #[test]
     fn test_clear_dirs() {
-        let settings = create_test_settings("test_clear_dirs");
+        let conn_manager = create_db("test_clear_dirs");
+        let settings = Settings::new(&conn_manager);
 
         settings.clear_dirs().expect("Error clearing dirs");
 
@@ -151,10 +162,12 @@ mod tests {
         assert_eq!(0, settings.list_dirs().unwrap().len());
     }
 
-    fn create_test_settings(db_name: &str) -> Settings<InMemoryConnectionManager> {
-        let conn_manager = InMemoryConnectionManager::new(db_name).unwrap();
-        conn_manager.migrate().unwrap();
+    fn create_db(db_name: &str) -> InMemoryConnectionManager {
+        let conn_manager = InMemoryConnectionManager::new(db_name)
+            .expect("Error creating connection manager.");
+        
+        conn_manager.migrate().expect("Error migrating db.");
 
-        Settings { conn_manager }
+        conn_manager
     }
 }
