@@ -1,6 +1,6 @@
 use std::{fs::File, path::Path};
 
-use crate::{db::ConnectionManager, settings::Settings};
+use crate::db::ConnectionManager;
 
 /// The commands module contains thin wrappers around the functions in the scan module
 /// to make them available to Tauri.
@@ -11,41 +11,64 @@ pub mod commands {
     use tauri::{ command, State };
 
     #[command]
-    pub fn scan_start(_conn_manager: State<InMemoryConnectionManager>, _scanner: State<Scanner<'_>>) {
+    pub fn scan_start(conn_manager: State<InMemoryConnectionManager>, task_list: State<ScanTaskList<'_>>) {
+        let scanner = Scanner::new(conn_manager.inner(), task_list.inner());
+
         unimplemented!()
     }
 
     #[command]
-    pub fn scan_get(_conn_manager: State<InMemoryConnectionManager>, _scanner: State<Scanner<'_>>) {
+    pub fn scan_get(conn_manager: State<InMemoryConnectionManager>, task_list: State<ScanTaskList<'_>>) {
+        let scanner = Scanner::new(conn_manager.inner(), task_list.inner());
+
         unimplemented!()
     }
 
     #[command]
-    pub fn scan_progress(_conn_manager: State<InMemoryConnectionManager>, _scanner: State<Scanner<'_>>) {
+    pub fn scan_progress(conn_manager: State<InMemoryConnectionManager>, task_list: State<ScanTaskList<'_>>) {
+        let scanner = Scanner::new(conn_manager.inner(), task_list.inner());
+
         unimplemented!()
     }
 }
 
-pub struct Scanner<'a> {
-    tasks: Vec<&'a ScanTask<'a>>,
+/// Scanner executes the tasks in the task list, scanning directories and gathering information about files.
+pub struct Scanner<'a, 'task, T: ConnectionManager> {
+    conn_manager: &'a T,
+    task_list: &'a ScanTaskList<'task>,
 }
 
-impl<'a> Scanner<'a> {
+impl<'a, 'task, T: ConnectionManager> Scanner<'a, 'task, T> {
     /// Creates a new Scanner that will do a full scan of the given directories.
-    pub fn new() -> Scanner<'a> {
-        Scanner { tasks: vec![] }
+    pub fn new(conn_manager: &'a T, task_list: &'a ScanTaskList<'task>) -> Scanner<'a, 'task, T> {
+        Scanner { task_list, conn_manager }
     }
 
     pub fn start(&self) {
+        /*
         for task in &self.tasks {
             match task {
                 _ => unimplemented!()
             }
         }
+        */
     }
 }
 
-// TODO: Scan tasks - expand directory, parse file, thingiverse lookup, browser downloads search
+/// ScanTaskList is a list of tasks that the scanner needs to execute.
+pub struct ScanTaskList<'a> {
+    tasks: Vec<&'a ScanTask<'a>>
+}
+
+impl<'a> ScanTaskList<'a> {
+    pub fn new() -> Self {
+        ScanTaskList {
+            tasks: vec![],
+        }
+    }
+}
+
+// TODO: Scan tasks - expand directory, parse file, thingiverse lookup, browser downloads search, etc.
 enum ScanTask<'a> {
     Init,
     ScanDir(File),
@@ -53,24 +76,16 @@ enum ScanTask<'a> {
     ScanZip(&'a Path),
 }
 
-/// A scan looks for 3D printing files in the directories configured in settings,
-/// and ScanState tracks the state the 
-enum ScanState<'a> {
-    /// StartDirs is the initial state before a scan starts - the scanner will recursively
-    /// expand the directories into a list of potential files, and move the scanner to the 
-    /// ScanningFiles state.
-    StartDirs(Vec<File>),
-    /// ScanningFiles 
-    ScanningFiles(Vec<&'a Path>),
-    /// ScanIdle indicates that a scan isn't currently running.
-    ScanIdle,
-}
+// TODO: expand zip files into a tree
 
-/// FileType 
+/// FileType
 #[derive(Debug, Eq, PartialEq)]
 enum FileType {
     ThingiverseZip,
+    OtherZip,
     Stl,
+    Image,
+    Readme,
 }
 
 // TODO: download location (browser history plugin?), thingiverse link, tags, readme

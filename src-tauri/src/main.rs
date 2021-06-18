@@ -4,7 +4,7 @@
 // )]
 
 use crate::db::{ConnectionManager, InMemoryConnectionManager};
-use crate::scan::Scanner;
+use crate::scan::{ScanTaskList, Scanner};
 use crate::settings::Settings;
 
 mod db;
@@ -15,15 +15,15 @@ fn main() {
   let conn_manager = InMemoryConnectionManager::new("stl-organizer")
   .expect("Error connecting to db.");
 
-  let scanner = Scanner::new();
-
   conn_manager.migrate().expect("Error initalizing db.");
 
   let settings = Settings::new(&conn_manager);
   settings.add_dir("~/Downloads").expect("Error adding sample directory.");
 
+  let scan_task_list = ScanTaskList::new();
+
   tauri::Builder::default()
-      .manage(scanner)
+      .manage(scan_task_list)
       .manage(conn_manager)
       .invoke_handler(tauri::generate_handler![
         settings::commands::list_dirs,
