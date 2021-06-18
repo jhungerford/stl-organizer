@@ -15,15 +15,14 @@ fn main() {
   let conn_manager = InMemoryConnectionManager::new("stl-organizer")
   .expect("Error connecting to db.");
 
-  let settings = Settings::new();
   let scanner = Scanner::new();
 
   conn_manager.migrate().expect("Error initalizing db.");
 
-  settings.add_dir(&conn_manager, "~/Downloads").expect("Error adding sample directory.");
+  let settings = Settings::new(&conn_manager);
+  settings.add_dir("~/Downloads").expect("Error adding sample directory.");
 
   tauri::Builder::default()
-      .manage(settings)
       .manage(scanner)
       .manage(conn_manager)
       .invoke_handler(tauri::generate_handler![
