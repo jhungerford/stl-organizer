@@ -20,7 +20,7 @@ fn main() {
 
   conn_manager.migrate().expect("Error initalizing db.");
 
-  settings.add_dir("~/Downloads").expect("Error adding sample directory.");
+  settings.add_dir(&conn_manager, "~/Downloads").expect("Error adding sample directory.");
 
   tauri::Builder::default()
       .manage(settings)

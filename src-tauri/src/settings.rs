@@ -14,13 +14,13 @@ pub mod commands {
     /// in alphabetical order.
     #[command]
     pub fn list_dirs(conn_manager: State<InMemoryConnectionManager>, settings: State<Settings>) -> Result<Vec<String>, SettingsError> {
-        settings.list_dirs(&conn_manager)
+        settings.list_dirs(conn_manager.inner())
     }
 
     /// `add_dir` adds a directory to the list that stl-organizer scans.
     #[command]
-    pub fn add_dir(settings: State<Settings<InMemoryConnectionManager>>, dir: &str) -> Result<(), SettingsError> {
-        settings.add_dir(dir)
+    pub fn add_dir(conn_manager: State<InMemoryConnectionManager>, settings: State<Settings>, dir: &str) -> Result<(), SettingsError> {
+        settings.add_dir(conn_manager.inner(), dir)
     }
 }
 
@@ -73,7 +73,7 @@ impl Settings {
 
     /// `list_dirs` returns a list of all of the directories that stl-organizer will scan,
     /// in alphabetical order.
-    pub fn list_dirs(&self, conn_manager: &T) -> Result<Vec<String>, SettingsError> where T: ConnectionManager {
+    pub fn list_dirs<T: ConnectionManager>(&self, conn_manager: &T) -> Result<Vec<String>, SettingsError> {
         let conn = conn_manager.get_connection()?;
         let mut stmt = conn.prepare("SELECT name FROM directories ORDER BY name")?;
         let rows = stmt.query_map(NO_PARAMS, |row| row.get(0));
@@ -87,16 +87,16 @@ impl Settings {
     }
 
     /// `add_dir` adds a directory to the list or directories that stl-organizer scans.
-    pub fn add_dir(&self, conn_manager: &T, dir: &str) -> Result<(), SettingsError> where T: ConnectionManager {
-        let conn = self.conn_manager.get_connection()?;
+    pub fn add_dir<T: ConnectionManager>(&self, conn_manager: &T, dir: &str) -> Result<(), SettingsError> {
+        let conn = conn_manager.get_connection()?;
         conn.execute("INSERT INTO directories (name) VALUES (?)", params![dir])?;
 
         Ok(())
     }
 
     /// `clear_dirs` removes all of the directories registered in settings, for testing.
-    fn clear_dirs(&self, conn_manager: &T) -> Result<(), SettingsError> where T: ConnectionManager {
-        let conn = self.conn_manager.get_connection()?;
+    fn clear_dirs<T: ConnectionManager>(&self, conn_manager: &T) -> Result<(), SettingsError> {
+        let conn = conn_manager.get_connection()?;
         conn.execute("DELETE FROM directories", NO_PARAMS)?;
 
         Ok(())
@@ -110,11 +110,11 @@ mod tests {
     #[test]
     fn test_get_dirs_empty() {
         let conn_manager = create_db("test_get_dirs_empty");
-        let settings = Settings::new(&conn_manager);
+        let settings = Settings::new();
 
-        settings.clear_dirs().expect("Error clearing dirs");
+        settings.clear_dirs(&conn_manager).expect("Error clearing dirs");
 
-        let listed_dirs = settings.list_dirs();
+        let listed_dirs = settings.list_dirs(&conn_manager);
         let expected: Vec<String> = vec![];
 
         assert!(listed_dirs.is_ok());
@@ -124,15 +124,15 @@ mod tests {
     #[test]
     fn test_add_get_dirs() {
         let conn_manager = create_db("test_add_dirs");
-        let settings = Settings::new(&conn_manager);
+        let settings = Settings::new();
 
-        settings.clear_dirs().expect("Error clearing dirs");
+        settings.clear_dirs(&conn_manager).expect("Error clearing dirs");
 
         for dir in vec!["~/Downloads", "~/Documents"] {
-            settings.add_dir(dir).expect(&format!("Error adding {}", dir));
+            settings.add_dir(&conn_manager, dir).expect(&format!("Error adding {}", dir));
         }
 
-        let dirs = settings.list_dirs();
+        let dirs = settings.list_dirs(&conn_manager);
         let expected = vec!["~/Documents".to_string(), "~/Downloads".to_string()];
         assert!(dirs.is_ok());
         assert_eq!(expected, dirs.unwrap());
@@ -141,15 +141,15 @@ mod tests {
     #[test]
     fn test_clear_dirs() {
         let conn_manager = create_db("test_clear_dirs");
-        let settings = Settings::new(&conn_manager);
+        let settings = Settings::new();
 
-        settings.clear_dirs().expect("Error clearing dirs");
+        settings.clear_dirs(&conn_manager).expect("Error clearing dirs");
 
-        settings.add_dir("~/Downloads").expect("Error adding dir");
-        assert_eq!(1, settings.list_dirs().unwrap().len());
+        settings.add_dir(&conn_manager, "~/Downloads").expect("Error adding dir");
+        assert_eq!(1, settings.list_dirs(&conn_manager).unwrap().len());
 
-        settings.clear_dirs().expect("Error clearing dirs");
-        assert_eq!(0, settings.list_dirs().unwrap().len());
+        settings.clear_dirs(&conn_manager).expect("Error clearing dirs");
+        assert_eq!(0, settings.list_dirs(&conn_manager).unwrap().len());
     }
 
     fn create_db(db_name: &str) -> InMemoryConnectionManager {

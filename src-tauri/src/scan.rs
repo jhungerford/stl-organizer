@@ -11,33 +11,29 @@ pub mod commands {
     use tauri::{ command, State };
 
     #[command]
-    pub fn scan_start(_scanner: State<Scanner<'_, '_, InMemoryConnectionManager>>) {
+    pub fn scan_start(_conn_manager: State<InMemoryConnectionManager>, _scanner: State<Scanner<'_>>) {
         unimplemented!()
     }
 
     #[command]
-    pub fn scan_get(_scanner: State<Scanner<'_, '_, InMemoryConnectionManager>>) {
+    pub fn scan_get(_conn_manager: State<InMemoryConnectionManager>, _scanner: State<Scanner<'_>>) {
         unimplemented!()
     }
 
     #[command]
-    pub fn scan_progress(_scanner: State<Scanner<'_, '_, InMemoryConnectionManager>>) {
+    pub fn scan_progress(_conn_manager: State<InMemoryConnectionManager>, _scanner: State<Scanner<'_>>) {
         unimplemented!()
     }
 }
 
-pub struct Scanner<'a, 'b, T: ConnectionManager> {
+pub struct Scanner<'a> {
     tasks: Vec<&'a ScanTask<'a>>,
-    settings: Settings<'b, T>,
 }
 
-impl<'a, 'b, T: ConnectionManager> Scanner<'a, 'b, T> {
+impl<'a> Scanner<'a> {
     /// Creates a new Scanner that will do a full scan of the given directories.
-    pub fn new(conn_manager: &'b T) -> Scanner<'a, 'b, T> {
-        Scanner {
-            tasks: vec![],
-            settings: Settings::new(conn_manager)
-        }
+    pub fn new() -> Scanner<'a> {
+        Scanner { tasks: vec![] }
     }
 
     pub fn start(&self) {
