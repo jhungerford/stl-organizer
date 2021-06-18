@@ -15,8 +15,8 @@ fn main() {
   let conn_manager = InMemoryConnectionManager::new("stl-organizer")
   .expect("Error connecting to db.");
 
-  let settings = Settings::new(&conn_manager);
-  let scanner = Scanner::new(&conn_manager);
+  let settings = Settings::new();
+  let scanner = Scanner::new();
 
   conn_manager.migrate().expect("Error initalizing db.");
 

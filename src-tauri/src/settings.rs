@@ -13,8 +13,8 @@ pub mod commands {
     /// `list_dirs` returns a list of all of the directories sql-organizer scans,
     /// in alphabetical order.
     #[command]
-    pub fn list_dirs<'a>(settings: State<Settings<InMemoryConnectionManager>, 'a>) -> Result<Vec<String>, SettingsError> {
-        settings.list_dirs()
+    pub fn list_dirs(conn_manager: State<InMemoryConnectionManager>, settings: State<Settings>) -> Result<Vec<String>, SettingsError> {
+        settings.list_dirs(&conn_manager)
     }
 
     /// `add_dir` adds a directory to the list that stl-organizer scans.
@@ -22,14 +22,6 @@ pub mod commands {
     pub fn add_dir(settings: State<Settings<InMemoryConnectionManager>>, dir: &str) -> Result<(), SettingsError> {
         settings.add_dir(dir)
     }
-}
-
-pub struct Commands {
-
-}
-
-impl Commands {
-
 }
 
 /// SettingsError is a unified error type for settings results.
@@ -71,20 +63,18 @@ impl From<DbError> for SettingsError {
     }
 }
 
-pub struct Settings<'a, T: ConnectionManager> {
-    conn_manager: &'a T
-}
+pub struct Settings {}
 
-impl<'a, T: ConnectionManager> Settings<'a, T> {
-    /// Creates a new Settings that will store settings using the given connection manager.
-    pub fn new(conn_manager: &'a T) -> Self {
-        Settings { conn_manager }
+impl Settings {
+    /// Creates a new Settings.
+    pub fn new() -> Self {
+        Settings {}
     }
 
     /// `list_dirs` returns a list of all of the directories that stl-organizer will scan,
     /// in alphabetical order.
-    pub fn list_dirs(&self) -> Result<Vec<String>, SettingsError> {
-        let conn = self.conn_manager.get_connection()?;
+    pub fn list_dirs(&self, conn_manager: &T) -> Result<Vec<String>, SettingsError> where T: ConnectionManager {
+        let conn = conn_manager.get_connection()?;
         let mut stmt = conn.prepare("SELECT name FROM directories ORDER BY name")?;
         let rows = stmt.query_map(NO_PARAMS, |row| row.get(0));
 
@@ -97,7 +87,7 @@ impl<'a, T: ConnectionManager> Settings<'a, T> {
     }
 
     /// `add_dir` adds a directory to the list or directories that stl-organizer scans.
-    pub fn add_dir(&self, dir: &str) -> Result<(), SettingsError> {
+    pub fn add_dir(&self, conn_manager: &T, dir: &str) -> Result<(), SettingsError> where T: ConnectionManager {
         let conn = self.conn_manager.get_connection()?;
         conn.execute("INSERT INTO directories (name) VALUES (?)", params![dir])?;
 
@@ -105,7 +95,7 @@ impl<'a, T: ConnectionManager> Settings<'a, T> {
     }
 
     /// `clear_dirs` removes all of the directories registered in settings, for testing.
-    fn clear_dirs(&self) -> Result<(), SettingsError> {
+    fn clear_dirs(&self, conn_manager: &T) -> Result<(), SettingsError> where T: ConnectionManager {
         let conn = self.conn_manager.get_connection()?;
         conn.execute("DELETE FROM directories", NO_PARAMS)?;
 
