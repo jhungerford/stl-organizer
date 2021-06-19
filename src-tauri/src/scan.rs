@@ -1,6 +1,6 @@
-use std::{fs::File, path::Path};
+use std::{path::{Path, PathBuf}, sync::{Arc, Mutex}};
 
-use crate::db::ConnectionManager;
+use crate::{db::ConnectionManager, error::AppError, settings::Settings};
 
 /// The commands module contains thin wrappers around the functions in the scan module
 /// to make them available to Tauri.
@@ -11,69 +11,56 @@ pub mod commands {
     use tauri::{ command, State };
 
     #[command]
-    pub fn scan_start(conn_manager: State<InMemoryConnectionManager>, task_list: State<ScanTaskList<'_>>) {
-        let scanner = Scanner::new(conn_manager.inner(), task_list.inner());
-
-        unimplemented!()
+    pub fn scan_start(
+        scanner: State<Arc<Mutex<Scanner<InMemoryConnectionManager>>>>,
+        settings: State<Settings<InMemoryConnectionManager>>,
+    ) -> Result<(), AppError> {
+        scanner.inner().lock()?.scan(&settings)
     }
 
     #[command]
-    pub fn scan_get(conn_manager: State<InMemoryConnectionManager>, task_list: State<ScanTaskList<'_>>) {
-        let scanner = Scanner::new(conn_manager.inner(), task_list.inner());
-
-        unimplemented!()
-    }
-
-    #[command]
-    pub fn scan_progress(conn_manager: State<InMemoryConnectionManager>, task_list: State<ScanTaskList<'_>>) {
-        let scanner = Scanner::new(conn_manager.inner(), task_list.inner());
-
+    pub fn scan_progress(_scanner: State<Mutex<Scanner<InMemoryConnectionManager>>>) {
         unimplemented!()
     }
 }
 
 /// Scanner executes the tasks in the task list, scanning directories and gathering information about files.
-pub struct Scanner<'a, 'task, T: ConnectionManager> {
-    conn_manager: &'a T,
-    task_list: &'a ScanTaskList<'task>,
+pub struct Scanner<T: ConnectionManager> {
+    conn_manager: Arc<T>,
+    task_list: Mutex<Vec<ScanTask>>,
 }
 
-impl<'a, 'task, T: ConnectionManager> Scanner<'a, 'task, T> {
-    /// Creates a new Scanner that will do a full scan of the given directories.
-    pub fn new(conn_manager: &'a T, task_list: &'a ScanTaskList<'task>) -> Scanner<'a, 'task, T> {
-        Scanner { task_list, conn_manager }
+impl<T: ConnectionManager> Scanner<T> {
+    /// Creates a new Scanner that will scan for 3D printing files in the given directories.
+    pub fn new(conn_manager: Arc<T>) -> Scanner<T> {
+        Scanner { 
+            conn_manager, 
+            task_list: Mutex::new(vec![]),
+        }
     }
 
-    pub fn start(&self) {
-        /*
-        for task in &self.tasks {
-            match task {
-                _ => unimplemented!()
+    /// Runs a full scan of the directories configured in the settings.
+    pub fn scan(&mut self, settings: &Settings<T>) -> Result<(), AppError> {
+        let dirs = settings.list_dirs()?;
+        let tasks = self.task_list.get_mut()?;
+
+        for dir in dirs {
+            let path = Path::new(&dir);
+            if path.is_dir() {
+                tasks.push(ScanTask::ScanDir(path.to_path_buf()));
             }
         }
-        */
-    }
-}
 
-/// ScanTaskList is a list of tasks that the scanner needs to execute.
-pub struct ScanTaskList<'a> {
-    tasks: Vec<&'a ScanTask<'a>>
-}
-
-impl<'a> ScanTaskList<'a> {
-    pub fn new() -> Self {
-        ScanTaskList {
-            tasks: vec![],
-        }
+        Ok(())
     }
 }
 
 // TODO: Scan tasks - expand directory, parse file, thingiverse lookup, browser downloads search, etc.
-enum ScanTask<'a> {
+enum ScanTask {
     Init,
-    ScanDir(File),
-    ScanStl(&'a Path),
-    ScanZip(&'a Path),
+    ScanDir(PathBuf),
+    ScanStl(PathBuf),
+    ScanZip(PathBuf),
 }
 
 // TODO: expand zip files into a tree
@@ -137,6 +124,8 @@ fn scan_zip(_path: &Path) -> Option<FileInfo> {
 
 #[cfg(test)]
 mod tests {
+    use crate::db::InMemoryConnectionManager;
+
     use super::*;
 
     #[test]
@@ -165,5 +154,18 @@ mod tests {
         let scanned = scan(path);
 
         assert!(scanned.is_some());
+    }
+
+    #[test]
+    fn test_full_scan() {
+        let conn_manager = Arc::new(InMemoryConnectionManager::new("test_full_scan").unwrap());
+        conn_manager.migrate();
+
+        let settings = Settings::new(conn_manager.clone());
+        settings.add_dir("test/resources");
+
+        let mut scanner = Scanner::new(conn_manager.clone());
+
+        scanner.scan(&settings);
     }
 }

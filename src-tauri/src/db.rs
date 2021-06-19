@@ -1,26 +1,10 @@
 use refinery::embed_migrations;
 use rusqlite::{Connection, OpenFlags};
 
+use crate::error::AppError;
+
 // The `db` module wires the refinery migrations stored in `src-tauri/sql_migrations` into sqlite.
 embed_migrations!("./sql_migrations");
-
-/// DbError is a unified error type for database errors.
-#[derive(Debug, Clone)]
-pub struct DbError {
-    pub message: String
-}
-
-impl From<rusqlite::Error> for DbError {
-    fn from(err: rusqlite::Error) -> Self {
-        DbError { message: err.to_string() }
-    }
-}
-
-impl From<refinery::Error> for DbError {
-    fn from(err: refinery::Error) -> Self {
-        DbError { message: err.to_string() }
-    }
-}
 
 /// `ConnectionManager` is a wrapper around a sqlite database, allowing callers to get a connection
 /// or migrate the schema.
@@ -30,7 +14,7 @@ pub trait ConnectionManager: Send + Sync {
     fn get_connection(&self) -> rusqlite::Result<Connection>;
 
     /// Migrates the schema by running the migrations in `src-tauri/sql_migrations`.
-    fn migrate(&self) -> Result<(), DbError> {
+    fn migrate(&self) -> Result<(), AppError> {
         let mut conn = self.get_connection()?;
         migrations::runner().run(&mut conn)?;
 
@@ -53,7 +37,7 @@ impl InMemoryConnectionManager {
     /// Constructs a new `InMemoryConnectionManager` with the given unique name.
     /// If multiple databases need to exist (e.g. one per test), name distinguishes them.
     #[allow(dead_code)]
-    pub fn new(name: &str) -> Result<InMemoryConnectionManager, DbError> {
+    pub fn new(name: &str) -> Result<InMemoryConnectionManager, AppError> {
         // rusqlite provides `Connection::open_in_memory`, but in-memory databases are allowed to
         // use shared cache when opened with a uri filename (file::memory: instead of :memory:)
         // and the open shared cache flag.  See https://sqlite.org/inmemorydb.html
