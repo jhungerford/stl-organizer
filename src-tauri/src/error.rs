@@ -20,6 +20,8 @@ impl std::fmt::Display for AppError {
     }
 }
 
+// TODO: is it possible to implement From<alloc::string::ToString> instead of these specific conversions?
+
 impl From<rusqlite::Error> for AppError {
     fn from(err: rusqlite::Error) -> Self {
         AppError { message: err.to_string() }
@@ -34,6 +36,18 @@ impl From<refinery::Error> for AppError {
 
 impl<T> From<PoisonError<T>> for AppError {
     fn from(err: PoisonError<T>) -> Self {
+        AppError { message: err.to_string() }
+    }
+}
+
+impl From<tokio::io::Error> for AppError {
+    fn from(err: tokio::io::Error) -> Self {
+        AppError { message: err.to_string() }
+    }
+}
+
+impl From<tokio::task::JoinError> for AppError {
+    fn from(err: tokio::task::JoinError) -> Self {
         AppError { message: err.to_string() }
     }
 }

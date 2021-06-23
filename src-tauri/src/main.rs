@@ -25,7 +25,7 @@ fn main() {
   let settings = Settings::new(conn_manager_arc.clone());
   settings.add_dir("~/Downloads").expect("Error adding sample directory.");
 
-  let scanner = Mutex::new(Scanner::new(conn_manager_arc.clone()));
+  let scanner = Mutex::new(Scanner::new(conn_manager_arc.clone()).expect("Error initializing scanner."));
 
   tauri::Builder::default()
       .manage(settings)
