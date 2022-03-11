@@ -1,7 +1,7 @@
-// #![cfg_attr(
-//   all(not(debug_assertions), target_os = "windows"),
-//   windows_subsystem = "windows"
-// )]
+#![cfg_attr(
+  all(not(debug_assertions), target_os = "windows"),
+  windows_subsystem = "windows"
+)]
 
 use std::sync::{Arc, Mutex};
 
@@ -18,7 +18,7 @@ fn main() {
   let conn_manager = InMemoryConnectionManager::new("stl-organizer")
   .expect("Error connecting to db.");
   
-  conn_manager.migrate().expect("Error initalizing db.");
+  conn_manager.migrate().expect("Error initializing db.");
 
   let conn_manager_arc = Arc::new(conn_manager);
 
@@ -28,14 +28,14 @@ fn main() {
   let scanner = Mutex::new(Scanner::new(conn_manager_arc.clone()).expect("Error initializing scanner."));
 
   tauri::Builder::default()
-      .manage(settings)
-      .manage(scanner)
-      .invoke_handler(tauri::generate_handler![
-        settings::commands::list_dirs,
-        settings::commands::add_dir,
-        scan::commands::scan_start,
-        scan::commands::scan_progress,
-      ])
+      // .manage(settings)
+      // .manage(scanner)
+      // .invoke_handler(tauri::generate_handler![
+      //   settings::commands::list_dirs,
+      //   settings::commands::add_dir,
+      //   scan::commands::scan_start,
+      //   scan::commands::scan_progress,
+      // ])
       .run(tauri::generate_context!())
       .expect("error while running tauri application");
 }

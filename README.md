@@ -1,14 +1,20 @@
 # stl-organizer
 
 ## Project setup
+Follow the [Tauri Setup Instructions](https://tauri.studio/en/docs/getting-started/setup-windows/).  
+
+On Windows (not WSL), make sure the Microsoft Visual Studio C++ **2019** build tools are installed and the 2017 version aren't.  Having 2017 installed can lead to `This version of %1 is not compatible with the version of Windows you’re running` when running the application.  Build tools are available [here](https://visualstudio.microsoft.com/downloads/).
+
+Install the cargo tauri cli tool with `cargo install tauri-cli --version ^1.0.0-beta` - test with `cargo tauri info`.  More details [here](https://tauri.studio/en/docs/usage/development/integration).
+
 ```
 yarn install
 ```
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+### Development
+Compile and hot-reload web sources with `yarn serve`.
+
+Run the application with hot reloading with: `cargo tauri dev`
 
 ### Compiles and minifies for production
 ```
