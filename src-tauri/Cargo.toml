@@ -12,16 +12,16 @@ build = "src/build.rs"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [build-dependencies]
-tauri-build = { version = "1.0.0-beta.4" }
+tauri-build = { version = "1.0.0-rc.4" }
 
 [dependencies]
 serde_json = "1.0"
 serde = { version = "1.0", features = ["derive"] }
-tauri = { version = "1.0.0-beta.8", features = ["api-all"] }
-rusqlite = { version = "0.24.2", features = ["bundled"] }
-refinery = { version = "0.5.0", features = ["rusqlite"] }
+tauri = { version = "1.0.0-rc.4", features = ["api-all"] }
+refinery = { version = "0.8.4", features = ["rusqlite"] }
+rusqlite = { version = "0.26", features = ["bundled"] }
 zip = "0.5"
-tokio = { version = "1.7.1", features = ["rt-multi-thread", "macros"] }
+tokio = { version = "1.17.0", features = ["rt-multi-thread", "macros"] }
 
 [features]
 default = [ "custom-protocol" ]
