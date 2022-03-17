@@ -15,64 +15,16 @@ nvm install node --latest-npm
 nvm use node
 
 ## Install yarn
+Use yarn 1 - Yarn2 compability with vue-cli is still [an open issue](https://github.com/vuejs/vue-cli/issues/5135), and `yarn tauri dev` works with yarn 1.  
+
 https://yarnpkg.com/getting-started/install
 `npm install -g yarn` to install yarn globally (yarn 1, probably)
 `yarn --version` to check global yarn version (OK if it's something like 1.22.0)
-`yarn set version berry` to switch project's yarn to 2
+`yarn install` to pull dependencies.
 
 Yarn commands: https://yarnpkg.com/getting-started/usage
-Not using zero installs, so cloners need to run `yarn install` to pull dependencies.
 
-## Create a project
-`yarn init` to start a new yarn project
-
-Yarn2 compatibility with vue-cli is still an open issue - https://github.com/vuejs/vue-cli/issues/5135, but I want to use yarn 2 to have the option to split the application up into workspaces.
-
-Manually specifying dependencies in `.yarnrc.yml worked - compiled from several suggestions in vue-cli#5135, plus errors that `yarn serve` reported.  Iterated by editing `.yarnrc.yaml`, running `yarn install`, then `yarn serve` in `/packages/frontend`.
-
-`.yarnrc.yml`:
-```yml
-yarnPath: ".yarn/releases/yarn-berry.cjs"
-
-packageExtensions:
-  "@vue/babel-preset-app@*":
-    peerDependencies:
-      vue: ^2.6.10
-  "@vue/cli-plugin-typescript@*":
-    dependencies:
-      babel-loader: "*"
-  "@vue/cli-service@*":
-    peerDependencies:
-      "@vue/babel-preset-app": "*"
-      "@vue/cli-plugin-babel": "*"
-      "@vue/cli-plugin-e2e-nightwatch": "*"
-      "@vue/cli-plugin-eslint": "*"
-      "@vue/cli-plugin-pwa": "*"
-      "@vue/cli-plugin-typescript": "*"
-      "@vue/cli-plugin-unit-jest": "*"
-      vue-cli-plugin-tauri: "*"
-  "@vue/babel-plugin-jsx@*":
-    peerDependencies:
-      "@babel/core": "*"
-  babel-loader@*:
-    dependencies:
-      "@babel/core": "*"
-  fork-ts-checker-webpack-plugin@*:
-    dependencies:
-      vue-template-compiler: "*"
-    peerDependencies:
-      typescript: "*"
-  vue-eslint-parser@*:
-    dependencies:
-      babel-eslint: "*"
-  "@yzfe/vue-svgicon@*":
-    peerDependencies:
-      "@yzfe/svgicon-loader": "*"
-  vue-loader@*:
-    peerDependencies:
-      "@vue/compiler-sfc": "*"
-      webpack: "*"
-```
+## Vue
 
 Create vue frontend using [vue-cli-plugin-tauri](https://github.com/tauri-apps/vue-cli-plugin-tauri):
 `yarn add @vue/cli` to install the vue cli
