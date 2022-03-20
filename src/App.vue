@@ -1,5 +1,6 @@
 <template>
-  <Settings />
+  <HelloWorld msg="Welcome to your Vue.js App" />
+<!--  <Settings />-->
   <!--
   <q-layout view="lHh Lpr lFf">
     <q-header elevated class="glossy">
@@ -85,10 +86,18 @@
 </template>
 
 <script>
-import { ref } from 'vue'
-// import HelloWorld from './components/HelloWorld.vue'
-import Settings from './pages/Settings.vue'
+import HelloWorld from './components/HelloWorld.vue'
+// import { ref } from 'vue'
+// import Settings from './pages/Settings.vue'
 
+export default {
+  name: 'App',
+  components: {
+    HelloWorld
+  }
+}
+
+/*
 export default {
   name: 'LayoutDefault',
 
@@ -102,4 +111,5 @@ export default {
     }
   }
 }
+ */
 </script>
